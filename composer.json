@@ -1,0 +1,20 @@
+
+{
+    "name": "hymns/infoblast-api",
+    "description": "Infoblast API library",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Muhammad Hamizi Jaminan",
+            "email": "hello@hamizi.net"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Infoblast\\": "src/"
+        }
+    }
+}
