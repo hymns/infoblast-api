@@ -19,6 +19,7 @@ use Infoblast\OpenAPI;
 
 $status = OpenAPI::send('phone-number', 'your-messages');
 
+var_dump($status);
 ```
 
 **Get Sending Status**
@@ -32,11 +33,12 @@ use Infoblast\OpenAPI;
 
 $status = OpenAPI::getStatus('messageID', true | false);
 
+var_dump($status);
 ```
 
 For second parameter, set to *true* for detail sent status. By default value is *false*.
 
-** Pull all message **
+**Pull all message**
 
 ```php
 <?php 
@@ -45,7 +47,9 @@ require 'vendor/autoload.php';
 
 use Infoblast\OpenAPI;
 
-$status = OpenAPI::pull('new', true | false);
+$message = OpenAPI::pull('new', true | false);
+
+var_dump($message);
 
 ```
 First parameter is optional, set to *all* to get all message, by default value is *new*.

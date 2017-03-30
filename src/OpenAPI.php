@@ -142,9 +142,9 @@ class OpenAPI
 	 * get sms send status to open api gateway
 	 *
 	 * @access public
-	 * @param int $msgID
+	 * @param string $msgID
 	 * @param bool $fullstatus
-	 * @return mixed
+	 * @return string|array
 	 */
 	public function status($msgID, $fullstatus = false)
 	{
