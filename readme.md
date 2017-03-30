@@ -31,7 +31,7 @@ require 'vendor/autoload.php';
 
 use Infoblast\OpenAPI;
 
-$status = OpenAPI::getStatus('messageID', true | false);
+$status = OpenAPI::status('messageID', true | false);
 
 var_dump($status);
 ```
