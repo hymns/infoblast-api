@@ -12,9 +12,6 @@ composer require hymns/infoblast-api
 
 ```php
 <?php 
-
-require 'vendor/autoload.php';
-
 use hymns\infoblast\OpenAPI;
 
 $status = OpenAPI::send('phone-number', 'your-messages');
@@ -26,9 +23,6 @@ var_dump($status);
 
 ```php
 <?php 
-
-require 'vendor/autoload.php';
-
 use hymns\infoblast\OpenAPI;
 
 $status = OpenAPI::status('messageID', true | false);
@@ -42,9 +36,6 @@ For second parameter, set to *true* for detail sent status. By default value is 
 
 ```php
 <?php 
-
-require 'vendor/autoload.php';
-
 use hymns\infoblast\OpenAPI;
 
 $message = OpenAPI::pull('new', true | false);
