@@ -12,7 +12,7 @@ composer require hymns/infoblast-api
 
 ```php
 <?php 
-use hymns\infoblast\OpenAPI;
+use Hymns\Infoblast\OpenAPI;
 
 $status = OpenAPI::send('phone-number', 'your-messages');
 
@@ -23,7 +23,7 @@ var_dump($status);
 
 ```php
 <?php 
-use hymns\infoblast\OpenAPI;
+use Hymns\Infoblast\OpenAPI;
 
 $status = OpenAPI::status('messageID', true | false);
 
@@ -36,7 +36,7 @@ For second parameter, set to *true* for detail sent status. By default value is 
 
 ```php
 <?php 
-use hymns\infoblast\OpenAPI;
+use Hymns\Infoblast\OpenAPI;
 
 $message = OpenAPI::pull('new', true | false);
 
