@@ -1,13 +1,14 @@
 <?php
-namespace Infoblast;
+namespace hymns\infoblast;
 
 /**
  * openapi.php
  *
- * Library for infoblast (sms gateway) api
+ * PHP packages for TM InfoBlast (SMS Gateway) API
  *
  * @package		Infoblast
  * @author		Muhammad Hamizi Jaminan <hello@hamizi.net>
+ * @license		MIT
  */
 
 class OpenAPI
@@ -68,7 +69,7 @@ class OpenAPI
 		$data = [
 					'sessionid' => $this->loginSession,
 					'to' => is_array($to) ? implode(',', $to) : $to,
-					'message' = $message,
+					'message' => $message,
 					'msgtype' => $type
 				];
 
@@ -94,7 +95,7 @@ class OpenAPI
 
 		$data = [
 					'sessionid' => $this->loginSession,
-					'status'] => $status
+					'status' => $status
 				];
 
 		$content = $this->request(self::URL_LIST, $data);
@@ -111,7 +112,9 @@ class OpenAPI
 				$data['uid'] = $num;
 
 				$content = $this->request(self::URL_DETAIL, $data);
-				
+								
+				if (!$content) break;
+
 				$dom = new DomDocument('1.0', 'utf-8');
 				$dom->loadXML($content);
 				$object = simplexml_import_dom($dom->documentElement);
