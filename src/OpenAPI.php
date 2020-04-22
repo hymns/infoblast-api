@@ -1,5 +1,5 @@
 <?php
-namespace hymns\infoblast;
+namespace Hymns\Infoblast;
 
 /**
  * openapi.php

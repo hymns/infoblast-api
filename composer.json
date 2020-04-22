@@ -16,7 +16,7 @@
     },    
     "autoload": {
         "psr-4": {
-            "Infoblast\\": "src/"
+            "Hymns\\Infoblast\\": "src/"
         }
     }
 }
