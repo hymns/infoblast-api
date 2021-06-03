@@ -20,6 +20,11 @@ class OpenAPI
 	private $session = null;
 
 	/**
+	 * @var Error message
+	 */
+	public $error = '';
+
+	/**
 	 * URL_*
 	 *
 	 * infoblast api endpoint url's constant
@@ -53,7 +58,7 @@ class OpenAPI
 	public function send($to, $message, $type = 'text')
 	{
 		if ($this->session === null)
-			return null;
+			return $this->error;
 
 		if (empty($to))
 			return 'Please enter phone number';
@@ -86,7 +91,7 @@ class OpenAPI
 	public function pull($status = 'new', $delete = false)
 	{
 		if ($this->session === null)
-			return null;
+			return $this->error;
 
 		$data = [
 					'sessionid' => $this->session,
@@ -146,7 +151,7 @@ class OpenAPI
 	public function status($msgID, $fullstatus = false)
 	{
 		if ($this->session === null)
-			return null;
+			return $this->error;
 
 		$session = ['sessionid' => $this->session];
 		$data = array_merge($session, ['msgid' => $msgID ]);
@@ -181,18 +186,29 @@ class OpenAPI
 	 *
 	 * @return string
 	 */
-	private function authenticate()
+	public function authenticate()
 	{
 		$username = getenv('INFOBLAST_USERNAME', true) ?: getenv('INFOBLAST_USERNAME');
-		$password = sha1(getenv('INFOBLAST_PASSWORD', true) ?: getenv('INFOBLAST_PASSWORD'));
+		$password = sha1(getenv('INFOBLAST_PASSWORD', true) ?: sha1(getenv('INFOBLAST_PASSWORD')));
 
-		if (empty($username) || empty($password))
-			return 'Please setup infoblast username and password on your server enviroment.';
-		
+		if ($username === false)
+		{
+			$this->error = 'Please setup infoblast username and password on your server enviroment. Please refer readme on this package.';
+			return null;
+		}
+
 		$content = $this->request(self::URL_LOGIN, ['username' => $username, 'password' => $password]);
 		$object = @simplexml_load_string($content);
 
-		return (is_object($object) && isset($object->sessionid)) ? (string) $object->sessionid : null;
+		if ((is_object($object) && isset($object->sessionid)))
+		{
+			return (string) $object->sessionid;
+		}
+		else
+		{
+			$this->error = 'Invalid username or password. Please make sure your infoblast account are enable for using API.';
+			return null;
+		}
 	}
 
 	/**
