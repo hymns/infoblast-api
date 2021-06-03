@@ -14,9 +14,9 @@ composer require hymns/infoblast-api
 <?php 
 use Hymns\Infoblast\OpenAPI;
 
-$status = OpenAPI::send('phone-number', 'your-messages');
+$response = (new OpenAPI())->send('phone-number', 'your-messages');
 
-var_dump($status);
+var_dump($response);
 ```
 
 **Get Sending Status**
@@ -25,9 +25,9 @@ var_dump($status);
 <?php 
 use Hymns\Infoblast\OpenAPI;
 
-$status = OpenAPI::status('messageID', true | false);
+$response = (new OpenAPI())->status('messageID', true | false);
 
-var_dump($status);
+var_dump($response);
 ```
 
 For second parameter, set to *true* for detail sent status. By default value is *false*.
@@ -38,13 +38,13 @@ For second parameter, set to *true* for detail sent status. By default value is 
 <?php 
 use Hymns\Infoblast\OpenAPI;
 
-$message = OpenAPI::pull('new', true | false);
+$response = (new OpenAPI())->pull('new', true | false);
 
-var_dump($message);
+var_dump($response);
 
 ```
 First parameter is optional, set to *all* to get all message, by default value is *new*.
 For second parameter value also optional, set to *true* for auto delete after pull, default value is *false*
 
 
-> P/S: Please set INFOBLAST_USERNAME and INFOBLAST_PASSWORD to your server enviroment
+> Note: Please set INFOBLAST_USERNAME and INFOBLAST_PASSWORD to your server enviroment
