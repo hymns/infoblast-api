@@ -115,7 +115,7 @@ class OpenAPI
 								
 				if (!$payload) break;
 
-				$dom = new DomDocument('1.0', 'utf-8');
+				$dom = new \DomDocument('1.0', 'utf-8');
 				$dom->loadXML($payload);
 				$object = simplexml_import_dom($dom->documentElement);
 
@@ -267,12 +267,12 @@ class OpenAPI
 		$handler = fopen($url, 'rb', false, $context);
 
 		if (!$handler)
-			throw new Exception('Unable to connect to ' . $url);
+			throw new \Exception('Unable to connect to ' . $url);
 
 		$content = stream_get_contents($handler);
 
 		if ($content === false)
-			throw new Exception('Unable to read data from ' . $url);
+			throw new \Exception('Unable to read data from ' . $url);
 
 		return $content;
 	}
